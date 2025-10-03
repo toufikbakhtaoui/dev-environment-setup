@@ -1,0 +1,34 @@
+---
+- name: Update Homebrew
+  homebrew:
+    update_homebrew: yes
+
+- name: Install taps
+  homebrew_tap:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ homebrew_taps }}"
+  register: brew_result
+
+- name: Install packages
+  homebrew:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ homebrew_packages }}"
+  register: brew_result
+
+- name: Install Casks
+  homebrew_cask:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ homebrew_casks }}"
+  register: cask_result
+
+- name: Install privileged Casks
+  expect:
+    command: brew install --cask {{ item }}
+    responses:
+      "Password:": "{{ ansible_become_password }}"
+    timeout: 300
+  loop: "{{ homebrew_casks_privileged }}"
+  register: cask_result_privileged

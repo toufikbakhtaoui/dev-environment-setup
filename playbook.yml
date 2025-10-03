@@ -1,3 +1,10 @@
 - name: Macos setup
   hosts: localhost
   gather_facts: true
+  vars_prompt:
+    - name: ansible_become_password
+      prompt: "Sudo password"
+      private: yes
+
+  roles:
+    - { role: homebrew, tags: ["homebrew"] }

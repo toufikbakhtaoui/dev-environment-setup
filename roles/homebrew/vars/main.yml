@@ -1,0 +1,34 @@
+homebrew_taps:
+  - nikitabobko/tap
+  - FelixKratz/formulae
+
+homebrew_packages:
+  - git
+  - openjdk@21
+  - zoxide
+  - maven
+  - neovim
+  - eza
+  - prettier
+  - node
+  - ripgrep
+  - borders
+  - duti
+  - aerospace
+  - borders
+
+homebrew_casks:
+  - font-caskaydia-cove-nerd-font
+  - obsidian
+  - raycast
+  - qbittorrent
+  - keepingyouawake
+  - sublime-text
+  - synologyassistant
+  - brave-browser
+  - ghostty
+  - vlc
+
+homebrew_casks_privileged:
+  - nordvpn
+  - netdownloadhelpercoapp
