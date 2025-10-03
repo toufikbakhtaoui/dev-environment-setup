@@ -1,0 +1,58 @@
+# ~/.zsh_custom - VOS configurations ZSH personnalisées
+# Ce fichier est sourcé par .zshrc (généré par Ansible)
+
+# ===== VOS VARIABLES D'ENVIRONNEMENT =====
+export EDITOR=nvim
+export VISUAL=nvim
+#export BROWSER=firefox
+
+BREW_PREFIX="$(brew --prefix)"
+JDK_PATH="${BREW_PREFIX}/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home"
+export JAVA_HOME="$JDK_PATH"
+export PATH="$JAVA_HOME/bin:$PATH"
+
+# --- Default working directory ---
+DEFAULT_DIR="/Volumes/DATA/dev/repositories"
+
+# Aller dans DEFAULT_DIR uniquement si on est dans $HOME
+if [ -z "$PWD" ] || [ "$PWD" = "$HOME" ]; then
+  cd "$DEFAULT_DIR"
+fi
+
+# ===== VOS OPTIONS ZSH =====
+# Historique
+setopt HIST_VERIFY                 # Vérifier avant d'exécuter depuis l'historique
+setopt HIST_IGNORE_ALL_DUPS        # Pas de doublons dans l'historique
+setopt HIST_SAVE_NO_DUPS           # Pas de doublons sauvegardés
+setopt SHARE_HISTORY               # Partager l'historique entre sessions
+setopt APPEND_HISTORY              # Ajouter à l'historique au lieu d'écraser
+setopt INC_APPEND_HISTORY          # Ajouter immédiatement à l'historique
+
+# Navigation
+setopt AUTO_CD                     # cd automatique si on tape juste le nom du dossier
+setopt AUTO_PUSHD                  # push automatique dans la pile des dossiers
+setopt PUSHD_IGNORE_DUPS           # Pas de doublons dans la pile
+setopt PUSHD_SILENT                # Pas d'affichage de la pile
+
+# Complétion
+setopt COMPLETE_ALIASES            # Complétion pour les alias
+setopt ALWAYS_TO_END               # Curseur à la fin après complétion
+
+# ===== HISTORIQUE =====
+export HISTSIZE=10000
+export SAVEHIST=10000
+export HISTFILE="$HOME/.zsh_history"
+
+# ===== INTÉGRATIONS OPTIONNELLES =====
+# Décommentez selon vos besoins :
+
+# Starship prompt (remplace le thème Oh My Zsh)
+# if command -v starship &> /dev/null; then
+#     eval "$(starship init zsh)"
+# fi
+
+# Zoxide (remplacement intelligent de cd)
+if command -v zoxide &> /dev/null; then
+    eval "$(zoxide init zsh)"
+fi
+

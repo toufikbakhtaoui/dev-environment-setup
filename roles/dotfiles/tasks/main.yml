@@ -1,0 +1,22 @@
+- name: Ensure parent directories exist
+  file:
+    path: "{{ item.dest | dirname }}"
+    state: directory
+    mode: "0755"
+  loop: "{{ dotfiles_list }}"
+
+- name: Symlink dotfiles (files)
+  file:
+    src: "{{ role_path }}/files/{{ item.src }}"
+    dest: "{{ item.dest }}"
+    state: link
+    force: yes
+  loop: "{{ dotfiles_list | selectattr('type','equalto','file') | list }}"
+
+- name: Symlink dotfiles (directories)
+  file:
+    src: "{{ role_path }}/files/{{ item.src }}"
+    dest: "{{ item.dest }}"
+    state: link
+    force: yes
+  loop: "{{ dotfiles_list | selectattr('type','equalto','directory') | list }}"

@@ -1,0 +1,16 @@
+alias ll='ls -la'
+alias gs='git status'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias vi='nvim'
+alias git-am='git add . & git commit --amend --no-edit & git push -f'
+alias cl='clear'
+alias reload='source ~/.zshrc'
+
+# eza aliases
+if command -v eza &>/dev/null; then
+  alias ls="eza --icons=always --group-directories-first"
+  alias tree="eza --tree --icons=always"
+  alias l='eza -lbF --git'
+  alias la='eza -lbhHigUa --git'
+fi

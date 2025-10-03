@@ -1,0 +1,32 @@
+dotfiles_list:
+  - src: zsh_aliases
+    dest: "{{ lookup('env', 'HOME') }}/.zsh_aliases"
+    type: file
+
+  - src: zsh_custom
+    dest: "{{ lookup('env', 'HOME') }}/.zsh_custom"
+    type: file
+
+  - src: gitconfig
+    dest: "{{ lookup('env', 'HOME') }}/.gitconfig"
+    type: file
+
+  - src: gitignoreglobal
+    dest: "{{ lookup('env', 'HOME') }}/.gitignoreglobal"
+    type: file
+
+  - src: config/nvim
+    dest: "{{ lookup('env', 'HOME') }}/.config/nvim"
+    type: directory
+
+  - src: config/ghostty
+    dest: "{{ lookup('env', 'HOME') }}/.config/ghostty"
+    type: directory
+
+  - src: config/aerospace
+    dest: "{{ lookup('env', 'HOME') }}/.config/aerospace"
+    type: directory
+
+  - src: config/borders
+    dest: "{{ lookup('env', 'HOME') }}/.config/borders"
+    type: directory
